@@ -81,7 +81,7 @@ class LinkedList:
         if self.head:
             pointer = self.head
             prev = None
-            while pointer.next:
+            while pointer:
                 if pointer.data == value:
                     if prev is None:
                         self.head = pointer.next
@@ -91,12 +91,57 @@ class LinkedList:
                     return True
                 prev = pointer
                 pointer = pointer.next
+        return False
+    
+    def search(self, value):
+        pointer = self.head
+        while pointer:
+            if pointer.data == value:
+                return True
+            pointer = pointer.next
+        return False
+    
+    def print_list(self):
+        pointer = self.head
+        while pointer:
+            print(pointer.data)
+            pointer = pointer.next
+
+    def size(self):
+        return self._size
+
+    def is_empty(self):
+        if self._size != 0:
             return False
+        return True
+
+    
+
         
 li = LinkedList()
-li.insert_end(1)
+
+print("Está vazia?", li.is_empty())
+
+li.insert_beginning(1)
 li.insert_end(2)
 li.insert_end(3)
+li.insert_beginning(0)
+
+print("Lista:")
+li.print_list()
+
+print("Tamanho:", li.size())
+
+print("Busca 2:", li.search(2))
+print("Busca 9:", li.search(9))
+print("Busca 0:", li.search(0))
+
+print("Remove 2:", li.remove(2))
+print("Remove 9:", li.remove(9))
+print("Lista após remove:")
+li.print_list()
+
+print("Está vazia?", li.is_empty())
 
 
 
